@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Suficy Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #0e0e0e;
+      color: #e0e0e0;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #00ffe7;
+      outline-offset: 2px;
+    }
+
+    header {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px;
+      min-height: 100vh;
+      background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3R5cGZ1bHlqeGR1NnJsOWJxZWttZWtidWlheG5uMHljcHIxam5hMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ko7twHhomhk8E/giphy.gif') center center/cover no-repeat;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    /* Overlay */
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    header > * {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 0.3em;
+      background: linear-gradient(90deg, #00ffe7, #7f00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      filter: drop-shadow(0 0 5px #00ffe7cc);
+      transition: filter 0.3s ease;
+      cursor: default;
+      user-select: none;
+    }
+
+    header h1:hover {
+      filter: drop-shadow(0 0 15px #7f00ffcc);
+    }
+
+    header p {
+      color: #ccc;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+      text-shadow: 0 0 5px rgba(0,0,0,0.7);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      background: #ffffff;
+      color: #000000;
+      padding: 0.8em 2.5em;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: #00ffe7;
+      color: #000000;
+      box-shadow: 0 6px 18px #00ffe7cc;
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Features section */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 2rem;
+      padding: 4rem 2.5rem;
+      background-color: #141414;
+      flex-grow: 1;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    }
+
+    .feature {
+      background-color: #1a1a1a;
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid #2a2a2a;
+      color: #ddd;
+      box-shadow: inset 0 0 10px rgba(0,255,231,0.1);
+      transition: background-color 0.3s ease;
+      cursor: default;
+      user-select: none;
+    }
+
+    .feature:hover {
+      background-color: #222222;
+    }
+
+    .feature h3 {
+      color: #00ffe7;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .feature p {
+      color: #bbb;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: 0.9rem;
+      color: #666;
+      background-color: #0e0e0e;
+      user-select: none;
+      box-shadow: inset 0 1px 5px rgba(255,255,255,0.05);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      header {
+        padding: 80px 15px;
+      }
+
+      .features {
+        padding: 3rem 1.5rem;
+        gap: 1.5rem;
+      }
+
+      .feature {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header role="banner" aria-label="Sección principal de Suficy Services">
+    <h1>Suficy Services</h1>
+    <p>Especializado en bots de Discord con sistemas de verificación, tickets, comandos de rol, automatización y desarrollo web profesional.</p>
+    <nav class="buttons" role="navigation" aria-label="Enlaces principales">
+      <a href="https://discord.com/users/tuusuario" target="_blank" rel="noopener noreferrer" class="btn" aria-describedby="discord-desc">
+        Hablar por Discord
+      </a>
+      <a href="#features" class="btn">
+        Ver Proyectos
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="features" id="features" aria-label="Proyectos y servicios destacados">
+      <article class="feature" tabindex="0">
+        <h3>🤖 Voflix Bot</h3>
+        <p>Bot de Discord con verificación avanzada, sistema de tickets, economía, comandos RP, staff tools y mucho más.</p>
+      </article>
+      <article class="feature" tabindex="0">
+        <h3>🔧 Sistemas Roleplay</h3>
+        <p>Licencias de conducir, multas, registros, whitelist, formularios interactivos y sistemas automatizados para servidores RP.</p>
+      </article>
+      <article class="feature" tabindex="0">
+        <h3>🤖 Sartori Bot</h3>
+        <p>Bot de Discord con función de facturas y comando <code>/top</code> para rankings dentro del servidor.</p>
+      </article>
+      <article class="feature" tabindex="0">
+        <h3>🌐 Voflix Community ERLC</h3>
+        <p>Servidor de roleplay comunitario enfocado en la experiencia ERLC, con eventos, staff activo y ambiente amigable.</p>
+      </article>
+      <article class="feature" tabindex="0">
+        <h3>🎯 Skills Técnicas</h3>
+        <p>JavaScript, Python, HTML, CSS, diseño responsive, lógica avanzada de bots, bases de datos, integración con APIs.</p>
+      </article>
+      <article class="feature" tabindex="0">
+        <h3>📩 Contacto</h3>
+        <p>Discord: <code>Suficy.not</code><br>Consultas, soporte o colaboración en proyectos.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    &copy; 2025 Suficy. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
